@@ -5,22 +5,22 @@
 class ServiceCommand
 {
 private:
-	void ShowMe();
+    void ShowMe();
 
 public:
-	ServiceCommand();
+    ServiceCommand();
 
-	std::string m_strSelf;
+    std::string m_strSelf;
 
-	ULONGLONG m_dwCreateTime;
+    ULONGLONG m_dwCreateTime;
 
-	inline std::string GetName()const { return m_strSelf; }
+    inline std::string GetName()const { return m_strSelf; }
 
 private://Timer
-	uint32_t m_nTimeout;
-	int n[10240] = { 0 };//mark:为了更明显地看到是否有内存泄漏
+    uint32_t m_nTimeout;
+    int n[10240] = { 0 };//mark:为了更明显地看到是否有内存泄漏
 
 public:
-	void SetTimeOut(uint32_t Timeout){ m_nTimeout = Timeout; }
+    void SetTimeOut(uint32_t Timeout){ m_nTimeout = Timeout; }
 
 };

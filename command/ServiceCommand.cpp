@@ -2,11 +2,11 @@
 
 ServiceCommand::ServiceCommand()
 {
-	m_dwCreateTime = GetTickCount64();
-	m_strSelf = initName(this);
+    m_dwCreateTime = GetTickCount64();
+    m_strSelf = initName(this);
 }
 
 void ServiceCommand::ShowMe()
 {
-	printf("ServiceCommand CreateTime[%lld] self[%#x]\r\n", m_dwCreateTime,this);
+    printf("ServiceCommand CreateTime[%lld] self[%#x]\r\n", m_dwCreateTime,this);
 }

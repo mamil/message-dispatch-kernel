@@ -8,16 +8,16 @@
 
 int main()
 {
-	ExceptionBase::GetExcep().StartMoniter();//异常生成dump
-	ClientKernel cKernel;
+    ExceptionBase::GetExcep().StartMoniter();//异常生成dump
+    ClientKernel cKernel;
 
-	if (cKernel.InitKernel() != 0)
-	{
-		return -1;
-	}
-	
-	cKernel.IntoKernelConsole();
+    if (cKernel.InitKernel() != 0)
+    {
+        return -1;
+    }
+    
+    cKernel.IntoKernelConsole();
 
 
-	return 0;
+    return 0;
 }

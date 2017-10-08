@@ -1,16 +1,16 @@
 #pragma once
 #include "ServiceCommand.h"
 class ServiceCmdGold :
-	public ServiceCommand
+    public ServiceCommand
 {
 public:
-	ServiceCmdGold()
-	{
-		m_strSelf = "Gold";
+    ServiceCmdGold()
+    {
+        m_strSelf = "Gold";
 
-	}
-	
+    }
+    
 public:
-	
+    
 };
 

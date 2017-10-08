@@ -7,36 +7,36 @@
 #include <WinBase.h>
 
 
-typedef	BOOL(WINAPI * MINIDUMP_WRITE_DUMP)(
-	IN HANDLE			hProcess,
-	IN DWORD			ProcessId,
-	IN HANDLE			hFile,
-	IN MINIDUMP_TYPE	DumpType,
-	IN CONST PMINIDUMP_EXCEPTION_INFORMATION	ExceptionParam, OPTIONAL
-	IN PVOID									UserStreamParam, OPTIONAL
-	IN PVOID									CallbackParam OPTIONAL
-	);
+typedef    BOOL(WINAPI * MINIDUMP_WRITE_DUMP)(
+    IN HANDLE            hProcess,
+    IN DWORD            ProcessId,
+    IN HANDLE            hFile,
+    IN MINIDUMP_TYPE    DumpType,
+    IN CONST PMINIDUMP_EXCEPTION_INFORMATION    ExceptionParam, OPTIONAL
+    IN PVOID                                    UserStreamParam, OPTIONAL
+    IN PVOID                                    CallbackParam OPTIONAL
+    );
 
 class ExceptionBase
 {
 public:
-	~ExceptionBase();
+    ~ExceptionBase();
 
-	int StartMoniter();
-	void PrintError();
+    int StartMoniter();
+    void PrintError();
 
-	static ExceptionBase& GetExcep();
-	int DoMiniDump(void* pExcpInfo);
+    static ExceptionBase& GetExcep();
+    int DoMiniDump(void* pExcpInfo);
 
 private:
-	ExceptionBase();
+    ExceptionBase();
 
-	HANDLE m_hFileMiniDump;
-	static ExceptionBase m_objExcep;
-	HMODULE	hDbgHelp;
-	MINIDUMP_WRITE_DUMP	MiniDumpWriteDump_;
+    HANDLE m_hFileMiniDump;
+    static ExceptionBase m_objExcep;
+    HMODULE    hDbgHelp;
+    MINIDUMP_WRITE_DUMP    MiniDumpWriteDump_;
 
-	int CreateDumpFile();
-	int WriteDump(void* info);
+    int CreateDumpFile();
+    int WriteDump(void* info);
 };
 

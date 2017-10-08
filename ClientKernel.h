@@ -5,10 +5,10 @@
 class ClientKernel : public Kernel
 {
 public:
-	ClientKernel();
-	virtual ~ClientKernel();
+    ClientKernel();
+    virtual ~ClientKernel();
 
 protected:
-	virtual int OnInitKernel();
-	virtual int OnKernelConsole();
+    virtual int OnInitKernel();
+    virtual int OnKernelConsole();
 };
