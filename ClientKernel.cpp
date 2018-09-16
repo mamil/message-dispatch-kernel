@@ -17,7 +17,7 @@ ClientKernel::~ClientKernel()
 
 int ClientKernel::OnInitKernel()
 {
-    ServiceGold *pGold = new ServiceGold;
+    auto pGold = std::make_shared<ServiceGold>();
     AddServiceToKernel(pGold);
 
     return 0;

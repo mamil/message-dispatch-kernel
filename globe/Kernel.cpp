@@ -64,9 +64,9 @@ int Kernel::run()
 }
 
 /////////////////
-int Kernel::AddServiceToKernel(Service* pService)
+int Kernel::AddServiceToKernel(std::shared_ptr<Service> pService)
 {
-    Service* pTemp = pService;
+    auto pTemp = pService;
     m_listServers.push_back(pTemp);
     pService->BindToKernel(this);
     return 0;
@@ -91,15 +91,15 @@ int Kernel::SendServiceCMD(SERVICE_CMD_SP serverCmd)
         return -1;
     }
 
-    Service *service = FindServiceByCmd(serverCmd->GetName());
+    auto service = FindServiceByCmd(serverCmd->GetName());
     
     return service->Invoke(serverCmd);
 }
 
-int Kernel::BindServiceCmdToKernel(Service* pService)
+int Kernel::BindServiceCmdToKernel(std::shared_ptr<Service> pService)
 {
-    using ServiceCMDPair = std::pair< std::string, Service*>;
-    std::pair< std::map<std::string, Service*>::iterator, bool > pr;
+    using ServiceCMDPair = std::pair< std::string, std::shared_ptr<Service>>;
+    std::pair< std::map<std::string, std::shared_ptr<Service>>::iterator, bool > pr;
     auto it = pService->m_listCMD.begin();
 
     for (; it != pService->m_listCMD.end(); it++)
@@ -118,9 +118,9 @@ int Kernel::BindServiceCmdToKernel(Service* pService)
     return 0;
 }
 
-Service* Kernel::FindServiceByCmd(std::string sCMD)
+std::shared_ptr<Service> Kernel::FindServiceByCmd(std::string sCMD)
 {
-    std::map< std::string, Service* >::iterator it = m_mapServiceCmd.find(sCMD);
+    std::map< std::string, std::shared_ptr<Service> >::iterator it = m_mapServiceCmd.find(sCMD);
     if (it != m_mapServiceCmd.end())
     {
         return it->second;
