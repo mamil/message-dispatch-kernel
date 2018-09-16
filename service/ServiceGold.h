@@ -29,7 +29,7 @@ public:
 protected:
     virtual int Invoke(SERVICE_CMD_SP pCmd);
     virtual int InitService();
-    virtual void AddCmdFunc(SERVICE_CMD_P pCmd, ServiceFunc Func);
+    virtual void AddCmdFunc(SERVICE_CMD_SP pCmd, ServiceFunc Func);
 
 private:
     SERVICE_FUNC_MAP m_mapServiceFunc;

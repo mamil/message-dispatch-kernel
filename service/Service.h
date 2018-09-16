@@ -14,7 +14,7 @@ class Service
 {
 public:
     Service(void);
-    ~Service(void);
+    virtual ~Service(void);
 
     virtual int Invoke(SERVICE_CMD_SP pCmd) = 0;
     virtual int InitService() = 0;

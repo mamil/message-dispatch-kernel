@@ -7,7 +7,6 @@ public:
     ServiceCmdBlackGold()
     {
         m_strSelf = "Black Gold";
-
     }
 
 public:

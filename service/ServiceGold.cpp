@@ -13,12 +13,10 @@ ServiceGold::~ServiceGold()
 
 int ServiceGold::InitService()
 {
-    //ServiceCmdGold *pGold = new ServiceCmdGold;
     auto pGold = std::make_shared<ServiceCmdGold>();
-    AddCmdFunc(pGold.get(), &ServiceGold::DealGold);
-    //ServiceCmdBlackGold *pBlackGold = new ServiceCmdBlackGold;
+    AddCmdFunc(pGold, &ServiceGold::DealGold);
     auto pBlackGold = std::make_shared<ServiceCmdBlackGold>();
-    AddCmdFunc(pBlackGold.get(), &ServiceGold::DealBlackGold);
+    AddCmdFunc(pBlackGold, &ServiceGold::DealBlackGold);
 
     return 0;
 }
@@ -50,7 +48,7 @@ int ServiceGold::Invoke(SERVICE_CMD_SP pCmd)
     }
     return 0;
 }
-void ServiceGold::AddCmdFunc(SERVICE_CMD_P pCmd, ServiceFunc Func)
+void ServiceGold::AddCmdFunc(SERVICE_CMD_SP pCmd, ServiceFunc Func)
 {
     SERVIC_CMD_FUNC Cmd_Func;
     //Cmd_Func.m_pCmd = pCmd;

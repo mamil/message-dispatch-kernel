@@ -32,8 +32,11 @@ int ClientKernel::OnKernelConsole()
         std::cin >> sCmd;
         if ("g" == sCmd || "G" == sCmd)
         {
-            auto pCmd = std::make_shared<ServiceCmdGold>();
-            SendServiceCMD(pCmd);
+            for (int i = 0; i<1000; i++)
+            {
+                auto pCmd = std::make_shared<ServiceCmdGold>();
+                SendServiceCMD(pCmd);
+            }
         }
         else if ("bg" == sCmd || "BG" == sCmd)
         {

@@ -74,10 +74,9 @@ int Kernel::AddServiceToKernel(std::shared_ptr<Service> pService)
 
 int Kernel::DispatchCommand()
 {
-    SERVICE_CMD_SP pTempCMD;
     while (!m_dequeCmd.empty())
     {
-        pTempCMD = m_dequeCmd.front();
+        auto pTempCMD = m_dequeCmd.front();
         m_dequeCmd.pop_front();
         //SendServiceCMD(pTempCMD);
     }
