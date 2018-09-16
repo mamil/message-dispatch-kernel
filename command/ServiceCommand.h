@@ -18,7 +18,7 @@ public:
 
 private://Timer
     uint32_t m_nTimeout;
-    int n[10240] = { 0 };//mark:为了更明显地看到是否有内存泄漏
+    int n[102400] = { 0 };//mark:为了更明显地看到是否有内存泄漏
 
 public:
     void SetTimeOut(uint32_t Timeout){ m_nTimeout = Timeout; }

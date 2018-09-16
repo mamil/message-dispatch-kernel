@@ -98,10 +98,9 @@ int Kernel::SendServiceCMD(SERVICE_CMD_SP serverCmd)
 
 int Kernel::BindServiceCmdToKernel(Service* pService)
 {
-    //typedef std::pair< std::string, Service*> ServiceCMDPair;
     using ServiceCMDPair = std::pair< std::string, Service*>;
     std::pair< std::map<std::string, Service*>::iterator, bool > pr;
-    std::list<std::string>::iterator it = pService->m_listCMD.begin();
+    auto it = pService->m_listCMD.begin();
 
     for (; it != pService->m_listCMD.end(); it++)
     {

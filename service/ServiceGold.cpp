@@ -13,10 +13,12 @@ ServiceGold::~ServiceGold()
 
 int ServiceGold::InitService()
 {
-    ServiceCmdGold *pGold = new ServiceCmdGold;
-    AddCmdFunc(pGold, &ServiceGold::DealGold);
-    ServiceCmdBlackGold *pBlackGold = new ServiceCmdBlackGold;
-    AddCmdFunc(pBlackGold, &ServiceGold::DealBlackGold);
+    //ServiceCmdGold *pGold = new ServiceCmdGold;
+    auto pGold = std::make_shared<ServiceCmdGold>();
+    AddCmdFunc(pGold.get(), &ServiceGold::DealGold);
+    //ServiceCmdBlackGold *pBlackGold = new ServiceCmdBlackGold;
+    auto pBlackGold = std::make_shared<ServiceCmdBlackGold>();
+    AddCmdFunc(pBlackGold.get(), &ServiceGold::DealBlackGold);
 
     return 0;
 }
@@ -51,19 +53,19 @@ int ServiceGold::Invoke(SERVICE_CMD_SP pCmd)
 void ServiceGold::AddCmdFunc(SERVICE_CMD_P pCmd, ServiceFunc Func)
 {
     SERVIC_CMD_FUNC Cmd_Func;
-    Cmd_Func.m_pCmd = pCmd;
+    //Cmd_Func.m_pCmd = pCmd;
     Cmd_Func.m_pFunc = Func;
 
-    pr = m_mapServiceFunc.insert(SERVICE_FUNC_PAIR(Cmd_Func.m_pCmd->GetName(), Cmd_Func));
+    pr = m_mapServiceFunc.insert(SERVICE_FUNC_PAIR(pCmd->GetName(), Cmd_Func));
     if ( pr.second)
     {
-        printf("AddCmdFunc [%s] ok~~\r\n", Cmd_Func.m_pCmd->GetName().c_str());
+        printf("AddCmdFunc [%s] ok~~\r\n", pCmd->GetName().c_str());
     }
     else
     {
-        printf("AddCmdFunc [%s] fail~~\r\n", Cmd_Func.m_pCmd->GetName().c_str());
+        printf("AddCmdFunc [%s] fail~~\r\n", pCmd->GetName().c_str());
     }
-    AddFunc(Cmd_Func.m_pCmd->GetName());
+    AddFunc(pCmd->GetName());
 }
 
 //////////////////////////same in service

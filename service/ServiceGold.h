@@ -19,7 +19,7 @@ public:
     typedef void (ServiceGold::*ServiceFunc)(SERVICE_CMD_SP pCmd);
     typedef struct SERVIC_CMD_FUNC
     {
-        SERVICE_CMD_P m_pCmd;
+        //SERVICE_CMD_P m_pCmd;
         ServiceFunc m_pFunc;
     };
     using SERVICE_FUNC_MAP = std::map<std::string, SERVIC_CMD_FUNC >;
