@@ -9,13 +9,14 @@ ServiceGold::ServiceGold()
 
 ServiceGold::~ServiceGold()
 {
+    m_mapServiceFunc.clear();
 }
 
 int ServiceGold::InitService()
 {
-    auto pGold = std::make_shared<ServiceCmdGold>();
+    auto pGold = SHARED_PTR(ServiceCmdGold);
     AddCmdFunc(pGold, &ServiceGold::DealGold);
-    auto pBlackGold = std::make_shared<ServiceCmdBlackGold>();
+    auto pBlackGold = SHARED_PTR(ServiceCmdBlackGold);
     AddCmdFunc(pBlackGold, &ServiceGold::DealBlackGold);
 
     return 0;

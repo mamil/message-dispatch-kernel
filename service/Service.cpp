@@ -9,6 +9,7 @@ Service::Service(void)
 
 Service::~Service(void)
 {
+    m_listCMD.clear();
 }
 
 int Service::InitService()

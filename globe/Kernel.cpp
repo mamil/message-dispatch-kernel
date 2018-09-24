@@ -21,6 +21,9 @@ Kernel::Kernel(void)
 Kernel::~Kernel(void)
 {
     StopThread();
+    m_dequeCmd.clear();
+    m_listServers.clear();
+    m_mapServiceCmd.clear();
 }
 
 int Kernel::InitKernel()

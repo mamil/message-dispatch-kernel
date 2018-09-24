@@ -1,4 +1,6 @@
+#include "globe/GeneralMacro.h"
 #include "ClientKernel.h"
+
 
 //todo:
 //socket
@@ -8,16 +10,30 @@
 
 int main()
 {
-    ExceptionBase::GetExcep().StartMoniter();//异常生成dump
-    ClientKernel cKernel;
-
-    if (cKernel.InitKernel() != 0)
     {
-        return -1;
-    }
-    
-    cKernel.IntoKernelConsole();
+        ExceptionBase::GetExcep().StartMoniter();//异常生成dump
+        ClientKernel cKernel;
 
+        if (cKernel.InitKernel() != 0)
+        {
+            return -1;
+        }
+
+        cKernel.IntoKernelConsole();
+    }
+
+    //memory leak
+    //Send all reports to STDOUT
+    /*_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
+    _CrtSetReportFile(_CRT_WARN, _CRTDBG_FILE_STDOUT);
+    _CrtSetReportMode(_CRT_ERROR, _CRTDBG_MODE_FILE);
+    _CrtSetReportFile(_CRT_ERROR, _CRTDBG_FILE_STDOUT);
+    _CrtSetReportMode(_CRT_ASSERT, _CRTDBG_MODE_FILE);
+    _CrtSetReportFile(_CRT_ASSERT, _CRTDBG_FILE_STDOUT);*/
+
+    //_CrtDumpMemoryLeaks();
+
+    _CrtMemDumpAllObjectsSince(NULL);
 
     return 0;
 }

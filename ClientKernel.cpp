@@ -17,7 +17,7 @@ ClientKernel::~ClientKernel()
 
 int ClientKernel::OnInitKernel()
 {
-    auto pGold = std::make_shared<ServiceGold>();
+    auto pGold = SHARED_PTR(ServiceGold);
     AddServiceToKernel(pGold);
 
     return 0;
@@ -32,20 +32,29 @@ int ClientKernel::OnKernelConsole()
         std::cin >> sCmd;
         if ("g" == sCmd || "G" == sCmd)
         {
-            for (int i = 0; i<1000; i++)
+            auto pCmd = SHARED_PTR(ServiceCmdGold);
+            SendServiceCMD(pCmd);
+        }
+        else if ("g1000" == sCmd || "G1000" == sCmd)
+        {
+            for (int i = 0; i < 1000; i++)
             {
-                auto pCmd = std::make_shared<ServiceCmdGold>();
+                auto pCmd = SHARED_PTR(ServiceCmdGold);
                 SendServiceCMD(pCmd);
             }
         }
         else if ("bg" == sCmd || "BG" == sCmd)
         {
-            auto pCmd = std::make_shared<ServiceCmdBlackGold>();
+            auto pCmd = SHARED_PTR(ServiceCmdBlackGold);
             SendServiceCMD(pCmd);
         }
         else if ("q" == sCmd || "Q" == sCmd)
         {
             break;
+        }
+        else if ("d" == sCmd || "D" == sCmd)
+        {
+            ExceptionBase::GetExcep().DoMiniDump(this);
         }
 
     } while (true);
