@@ -27,7 +27,12 @@ public://func
     std::list<std::string> m_listCMD;
     void AddFunc(std::string sCMD);
 
+    #ifdef WIN32
     ULONGLONG m_dwCreateTime;
+    #endif // WIN32
+    #if defined(__linux__) || defined(__linux)
+    unsigned long m_dwCreateTime;
+    #endif // linux
     void sayMyself();
 };
 

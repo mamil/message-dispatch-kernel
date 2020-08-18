@@ -1,6 +1,6 @@
 #include "Kernel.h"
 
-unsigned __stdcall ThreadFun(void *pParam)
+void ThreadFun(void *pParam)
 {
     Kernel *pKernel = (Kernel*)pParam;
     while (pKernel->m_bRunThread)
@@ -8,15 +8,14 @@ unsigned __stdcall ThreadFun(void *pParam)
         pKernel->run();
     }
 
-    return 0;
+    return;
 }
 
 Kernel::Kernel(void)
 {
     m_bRunThread = true;
-    m_hThread = (HANDLE)_beginthreadex(nullptr, 0, ThreadFun, this, 0, nullptr);
+    m_hThread = std::thread(ThreadFun, this);
 }
-
 
 Kernel::~Kernel(void)
 {
@@ -55,12 +54,22 @@ int Kernel::IntoKernelConsole()
 int Kernel::run()
 {
     int nWaitTime = KERNEL_WAIT_TIME;
+    #ifdef WIN32
     m_nKernelThreadID = GetCurrentThreadId();
+    #endif // WIN32
+    #if defined(__linux__) || defined(__linux)
+    m_nKernelThreadID = CurrentThread::gettid();
+    #endif // linux
 
     while (m_bRunThread)
     {
         DispatchCommand();
+        #ifdef WIN32
         Sleep(nWaitTime);
+        #endif // WIN32
+        #if defined(__linux__) || defined(__linux)
+        usleep(nWaitTime);
+        #endif // linux
     }
 
     return 0;
@@ -94,7 +103,7 @@ int Kernel::SendServiceCMD(SERVICE_CMD_SP serverCmd)
     }
 
     auto service = FindServiceByCmd(serverCmd->GetName());
-    
+
     return service->Invoke(serverCmd);
 }
 

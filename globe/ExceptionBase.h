@@ -1,4 +1,5 @@
 #pragma once
+#ifdef WIN32
 #include <Windows.h>
 #include <dbghelp.h>
 #include <excpt.h>
@@ -40,3 +41,4 @@ private:
     int WriteDump(void* info);
 };
 
+#endif // WIN32

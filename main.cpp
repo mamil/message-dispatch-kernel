@@ -25,6 +25,7 @@ int main()
         cKernel.IntoKernelConsole();
     }
 
+    #ifdef WIN32
     //memory leak
     //Send all reports to STDOUT
     /*_CrtSetReportMode(_CRT_WARN, _CRTDBG_MODE_FILE);
@@ -37,6 +38,7 @@ int main()
     //_CrtDumpMemoryLeaks();
 
     _CrtMemDumpAllObjectsSince(NULL);
+    #endif // WIN32
 
     return 0;
 }

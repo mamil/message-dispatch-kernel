@@ -12,7 +12,12 @@ public:
 
     std::string m_strSelf;
 
+    #ifdef WIN32
     ULONGLONG m_dwCreateTime;
+    #endif // WIN32
+    #if defined(__linux__) || defined(__linux)
+    unsigned long m_dwCreateTime;
+    #endif // linux
 
     inline std::string GetName()const { return m_strSelf; }
 

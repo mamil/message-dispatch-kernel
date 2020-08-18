@@ -8,8 +8,8 @@ public:
     {
         m_strSelf = "Gold";
     }
-    
+
 public:
-    
+
 };
 

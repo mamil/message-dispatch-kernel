@@ -16,7 +16,12 @@ public:
 
     int InitKernel();
 
+    #ifdef WIN32
     DWORD m_nKernelThreadID;
+    #endif // WIN32
+    #if defined(__linux__) || defined(__linux)
+    int m_nKernelThreadID;
+    #endif // linux
 
     int IntoKernelConsole();
 protected:
@@ -31,7 +36,7 @@ public://线程部分
     void StopThread(){ m_bRunThread = false; }
     bool IsThreadRuning(){ return m_bRunThread == true; }
     virtual int run();
-    HANDLE m_hThread;
+    std::thread m_hThread;
 
 public://任务分派
     std::list< std::shared_ptr<Service> > m_listServers;//服务列表

@@ -10,13 +10,20 @@
 #include <string>
 #include <typeinfo>
 #include <cstdio>
+#include <thread>
 
 // for win headers
 #ifdef WIN32
 #include <Windows.h>
 #include <process.h>
-
 #endif // WIN32
+
+// for linux
+#if defined(__linux__) || defined(__linux)
+#include <time.h>
+#include <unistd.h>
+#include <sys/syscall.h>
+#endif // linux
 
 //#include "../command/ServiceCommand.h"
 
@@ -43,6 +50,19 @@ std::string initName(T*)
     return typeid(T*).name();
 }
 
+// linux thread id
+#if defined(__linux__) || defined(__linux)
+class CurrentThread
+{
+public:
+    static pid_t gettid()
+    {
+        return syscall(SYS_gettid);
+    }
+};
+#endif // linux
+
+
 //for memory leaks
 #ifdef WIN32
 
@@ -66,3 +86,7 @@ std::string initName(T*)
 #endif // CHECK_MEMORY_LEAKS
 
 #endif // WIN32
+
+#if defined(__linux__) || defined(__linux)
+#define SHARED_PTR(param) std::make_shared<param>();
+#endif // linux

@@ -1,8 +1,8 @@
 #pragma once
 #include "ClientKernel.h"
 
-#include "service\ServiceGold.h"
-#include "command\ServiceCmdGold.h"
+#include "service/ServiceGold.h"
+#include "command/ServiceCmdGold.h"
 
 
 ClientKernel::ClientKernel()
