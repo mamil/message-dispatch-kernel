@@ -24,8 +24,8 @@ public:
 
 public:
 #ifdef CHECK_MEMORY_LEAKS
-    int n[102400] = { 0 };//mark:Ϊ�˸����Եؿ����Ƿ����ڴ�й©
-    int n2[102400] = { 0 };//error:ֻ��2���ڴ���4M�����Ǽӵ��ٶ�һ�㣬�ڴ淴�����½�����
-    int n3[102400] = { 0 };//error:ֻ��2���ڴ���4M�����Ǽӵ��ٶ�һ�㣬�ڴ淴�����½�����
+    int n[102400] = { 0 };//mark:为了更明显地看到是否有内存泄漏
+    int n2[102400] = { 0 };//error:只加2个内存是4M，但是加的再多一点，内存反而会下降！！
+    int n3[102400] = { 0 };//error:只加2个内存是4M，但是加的再多一点，内存反而会下降！！
 #endif // CHECK_MEMORY_LEAKS
 };

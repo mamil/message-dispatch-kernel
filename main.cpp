@@ -11,7 +11,7 @@
 int main()
 {
     {
-        ExceptionBase::GetExcep().StartMoniter();//Òì³£Éú³Édump
+        ExceptionBase::GetExcep().StartMoniter();//å¼‚å¸¸ç”Ÿæˆdump
         ClientKernel cKernel;
 
         if (cKernel.InitKernel() != 0)

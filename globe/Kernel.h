@@ -25,7 +25,7 @@ protected:
 public:
     virtual int OnInitKernel();
 
-public://线程部分
+public://绾跨▼閮ㄥ垎
     bool m_bRunThread;
     void StartThread(){ m_bRunThread = true; }
     void StopThread(){ m_bRunThread = false; }
@@ -33,13 +33,13 @@ public://线程部分
     virtual int run();
     HANDLE m_hThread;
 
-public://任务分派
-    std::list< std::shared_ptr<Service> > m_listServers;//服务列表
-    std::map< std::string, std::shared_ptr<Service> > m_mapServiceCmd;//命令与服务的对应
-    std::deque<SERVICE_CMD_SP > m_dequeCmd;//要处理的命令
+public://浠诲姟鍒嗘淳
+    std::list< std::shared_ptr<Service> > m_listServers;//鏈嶅姟鍒楄〃
+    std::map< std::string, std::shared_ptr<Service> > m_mapServiceCmd;//鍛戒护涓庢湇鍔＄殑瀵瑰簲
+    std::deque<SERVICE_CMD_SP > m_dequeCmd;//瑕佸鐞嗙殑鍛戒护
 
-    int DispatchCommand();//分发任务
-    int AddServiceToKernel(std::shared_ptr<Service> server);//添加服务m_listServers
+    int DispatchCommand();//鍒嗗彂浠诲姟
+    int AddServiceToKernel(std::shared_ptr<Service> server);//娣诲姞鏈嶅姟m_listServers
     int SendServiceCMD(SERVICE_CMD_SP server);//
     std::shared_ptr<Service> FindServiceByCmd(std::string sCMD);
     int BindServiceCmdToKernel(std::shared_ptr<Service> pService);//m_mapServiceCmd

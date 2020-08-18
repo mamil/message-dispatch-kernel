@@ -4,7 +4,7 @@
 
 
 
-ExceptionBase ExceptionBase::m_objExcep;//Õâ¾äÇ§Íò²»ÄÜ¶ª
+ExceptionBase ExceptionBase::m_objExcep;//è¿™å¥åƒä¸‡ä¸èƒ½ä¸¢
 
 ExceptionBase::ExceptionBase()
 {
