@@ -1,5 +1,5 @@
 #pragma once
-#include "globe\Kernel.h"
+#include "globe/Kernel.h"
 
 
 class ClientKernel : public Kernel

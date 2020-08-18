@@ -54,7 +54,9 @@ int ClientKernel::OnKernelConsole()
         }
         else if ("d" == sCmd || "D" == sCmd)
         {
+            #ifdef WIN32
             ExceptionBase::GetExcep().DoMiniDump(this);
+            #endif // WIN32
         }
 
     } while (true);

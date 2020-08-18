@@ -11,7 +11,10 @@
 int main()
 {
     {
+        #ifdef WIN32
         ExceptionBase::GetExcep().StartMoniter();//异常生成dump
+        #endif // WIN32
+
         ClientKernel cKernel;
 
         if (cKernel.InitKernel() != 0)

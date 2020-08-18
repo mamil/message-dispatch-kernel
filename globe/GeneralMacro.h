@@ -1,11 +1,9 @@
 #pragma once
-#include <Windows.h>
 #include <mutex>
 #include <list>
 #include <map>
 #include <deque>
 #include <atomic>
-#include <process.h>
 #include <memory>
 #include <iostream>
 #include <stdio.h>
@@ -13,6 +11,12 @@
 #include <typeinfo>
 #include <cstdio>
 
+// for win headers
+#ifdef WIN32
+#include <Windows.h>
+#include <process.h>
+
+#endif // WIN32
 
 //#include "../command/ServiceCommand.h"
 
