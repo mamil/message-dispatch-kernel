@@ -4,7 +4,7 @@ set(CXX_FLAGS
     -std=c++11
     -pthread
 )
-set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread" CACHE STRING "Set C++ Compiler Flags" FORCE)
+set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -pthread -g" CACHE STRING "Set C++ Compiler Flags" FORCE)
 
 project (message-dispatch-kernel)
 

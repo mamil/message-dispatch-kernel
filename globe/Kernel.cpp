@@ -15,6 +15,7 @@ Kernel::Kernel(void)
 {
     m_bRunThread = true;
     m_hThread = std::thread(ThreadFun, this);
+    m_hThread.detach();
 }
 
 Kernel::~Kernel(void)
